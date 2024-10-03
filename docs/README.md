@@ -50,12 +50,12 @@ def perimeter(a):
     return 4 * a
 ```
 
-### Добавлена документация
+### Docs added
 
-> Wed Oct 2 23:12:04 2024 +0300, commit hash:
-[2895852b2996e01499e575d71d5ef00b97b91024]
+> Thu Mar 4 14:55:29 2021 +0300, commit hash:
+[17fad60351c9b4046bd398486fe6da5d9fab3662]
 
-- Добавлена документация к проекту.
+- Добавлен файл docs.
 
 ### Circle and square added
 
