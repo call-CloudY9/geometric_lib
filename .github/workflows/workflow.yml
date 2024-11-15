@@ -3,6 +3,7 @@ name: Python Tests
 on:
   push:
     branches:
+      - tests
       - main
       - release
   pull_request:
