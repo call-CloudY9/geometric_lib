@@ -1,0 +1,52 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+    branches:
+      - main
+      - release
+      - develop
+
+env:
+  STUDENT_NAME: "Рахимкулов Даниил Роебртович"
+  GROUP_NUMBER: "M3115"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print student info
+        run: |
+          echo "ФИО: ${{ env.STUDENT_NAME }}"
+          echo "Группа: ${{ env.GROUP_NUMBER }}"
+          echo "GitHub username: ${{ github.actor }}"
+
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Run tests
+        run: |
+          python -m unittest discover
+
+      - name: Check code style
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
